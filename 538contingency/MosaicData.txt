@@ -1,0 +1,52 @@
+DC/Agree/Disagree for Gay Marriage
+
+1114 Left by Income 1-3
+---------------------------------
+659 Don't Care
+254 Agree
+201 Disagree
+
+
+1080 Right by Income 1-3
+---------------------------------
+645 Don't Care
+232 Agree
+203 Disagree 
+
+
+Middle by Income 1-4
+---------------------------------
+484 Don't Care
+738 Agree
+602 Disagree
+
+
+Total by Income
+---------------------------------
+1788 Don't Care
+1224 Agree
+1006 Disagree
+
+Incorporate the midle from the opposite side of the spectrum.
+
+If you throw out all the middle group economists you wont weigh their opinion on Gay Marriage.
+
+
+++
+254 34 28.539
+
+
+TopRight
+232 22 26.06
+
+BottomLeft
+201 20 22.58
+
+
+--
+203 25 22.81
+
+---------
+
+
+890
