@@ -11,18 +11,7 @@ new[2045:4018,] = new2 # Add all the rows from new2 to new1 starting at the next
 View(new)
 
 
-summary(grepl('Cant', new[,4]))
-# Mode   FALSE    TRUE    NA's 
-#logical    3991      27       0 
-summary(grepl('Neither', new[,4]))
-#Mode   FALSE    TRUE    NA's 
-#logical    3699     319       0 
-summary(grepl('Not applicable', new[,4]))
-#Mode   FALSE    TRUE    NA's 
-#logical    2589    1429       0 
 
-#This let's us realize that 1775/4018 people do not have an opinion about Gay Marraige. This is important because it represents 44.176%
-#of the surveyed observations. It will be important when trying to determine the scale of the entire chart.
 
 Notapplic = new[grepl('Not applicable', new[,4]),]
 Notapplic2 =  new[grepl('Neither', new[,4]),]
@@ -73,11 +62,107 @@ sum(nrow(Notapplic_three),nrow(Notapplic_two))
 
 #So now we know 397 people were against, and 318 were for. Remember this only applies to unopinionated.
 
-summary(new[grepl('Not applicable', new[,3]),])
-summary(new[grepl('answer', new[,3]),]) #8 No Answer
-summary(new[grepl('know', new[,3]),]) #24 Don't knows
+
+
+
+#MIDDLers
+summary(grepl('Cant', new[,4]))
+# Mode   FALSE    TRUE    NA's 
+#logical    3991      27       0 
+summary(grepl('Neither', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    3699     319       0 
+summary(grepl('Not applicable', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    2589    1429       0
+
+#BOTTOMers
+summary(grepl('Strongly dis', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    3386     632       0 
+summary(grepl('Disag', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    3644     374       0 
+
+
+#TOPPERs
+summary(grepl('Strongly a', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    3425     593       0 
+summary(grepl('Agr', new[,4]))
+#Mode   FALSE    TRUE    NA's 
+#logical    3387     631       0 
+
+
+#Those who agree with Gay Marraige Rights would be the categories Agree, Strongly agree. 593+631 = 1224
+#Those who disagree with Gay Marraige Rights would be the categories Disagree, Strongly disagree. 632+374 = 1006
+
+#These metrics are important, because they tell us if we are on track. The ratio of the two compared to the total is 1.21~ which is the same ratio
+#on FiveThirtyEight's site (56% FOR versus 45% AGAINST - 101% though?)
+
+#Now that we have accurately sorted by Rights, need to compare to economic.
+
+
+#Combine the rows which Agree and Strongly agree, and determine the metrics for the upper half.
+#Combine the rows which Disagree and Strongly Disagree, and determine the metrics for the lower half.
+
+
+#LEFT
+summary(new[grepl('Govt reduce diff', new[,3]),]) #568
 summary(new[grepl('6', new[,3]),]) #183 6's across the board
 summary(new[grepl('5', new[,3]),]) #363
-summary(new[grepl('4', new[,3]),]) #Median: 489 Similar to no opinion; but signifies the government is currently on track.
+#1114 Total LEFTers
+
+#RIGHT
+summary(new[grepl('No govt action', new[,3]),]) #429
 summary(new[grepl('3', new[,3]),]) #413
 summary(new[grepl('2', new[,3]),]) #238
+#1080 Total RIGHTers
+
+#MIDDLE
+summary(new[grepl('Not applicable', new[,3]),]) #1303
+summary(new[grepl('answer', new[,3]),]) #8 No Answer
+summary(new[grepl('know', new[,3]),]) #24 Don't knows
+summary(new[grepl('4', new[,3]),]) #Median: 489 Similar to no opinion; but signifies the government is currently on track.
+#1824 Total MIDDLers
+
+
+#Our numbers total up to 4018 which is the number of observations that we had for 2010-2012. Good.
+
+#Observations which were not one way or another (4018-1114-1080) = 1824
+
+#Those who want no government involvement or voted below the median on a scale 2-6 for government involvement would be far right (429 + 238 + 413) = 1080 = 26.9%
+
+#Those who voted 5 or 6 on the scale or for govt to reduce diff would be left (183 + 363 + 568) = 1114 = 27.7% far left
+
+#The chart shows 54% left versus 47% right. (Once again 101%). 1114/1080 ~ 54/47 ? 
+
+
+#In favor of economic
+left_1 = summary(new[grepl('Govt reduce diff', new[,3]),])[,4]
+left_2 = summary(new[grepl('6', new[,3]),])[,4]
+left_3 = summary(new[grepl('5', new[,3]),])[,4]
+
+right_1 = summary(new[grepl('No govt action', new[,3]),])[,4]
+right_2 = summary(new[grepl('2', new[,3]),])[,4]
+right_3 = summary(new[grepl('3', new[,3]),])[,4]
+
+middle_1 = summary(new[grepl('Not applicable', new[,3]),])[,4]
+middle_2 = summary(new[grepl('answer', new[,3]),])[,4]
+middle_3 = summary(new[grepl('know', new[,3]),])[,4]
+middle_4 = summary(new[grepl('4', new[,3]),])[,4]
+
+#In favor of Rights
+midd_1 = summary(new[grepl('Cant', new[,4]),], maxsum = 12)[,3]
+midd_2 = summary(new[grepl('Neither', new[,4]),], maxsum = 12)[,3]
+midd_3 = summary(new[grepl('Not applicable', new[,4]),], maxsum = 12)[,3]
+
+bottom_1 = summary(new[grepl('Strongly dis', new[,4]),], maxsum = 12)[,3]
+bottom_2 = summary(new[grepl('Disag', new[,4]),], maxsum = 12)[,3]
+
+
+top_1 = summary(new[grepl('Strongly a', new[,4]),], maxsum = 12)[,3]
+top_2 = summary(new[grepl('Agr', new[,4]),], maxsum = 12)[,3]
+
+
+#Having trouble getting Mosaic list to apply itself on a LIST object.
